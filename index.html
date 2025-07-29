@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tech Gadgets Store</title>
+  <!-- Bootstrap CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      padding-top: 70px;
+    }
+    .sidebar {
+      max-width: 250px;
+    }
+    .price-range label {
+      display: block;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Tech Gadgets</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent"
+      aria-controls="navContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navContent">
+      <ul class="navbar-nav me-auto">
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Categories
+          </a>
+          <ul class="dropdown-menu">
+
+            <!-- Electronics Submenu -->
+            <li class="dropdown-submenu dropend">
+              <a class="dropdown-item dropdown-toggle" href="#">Electronics</a>
+              <ul class="dropdown-menu">
+
+                <li><a class="dropdown-item category-link" href="#" data-category="Electronics > Smartphones">Smartphones</a></li>
+                <li><a class="dropdown-item category-link" href="#" data-category="Electronics > Laptops">Laptops</a></li>
+
+              </ul>
+            </li>
+
+            <!-- Accessories Submenu -->
+            <li class="dropdown-submenu dropend">
+              <a class="dropdown-item dropdown-toggle" href="#">Accessories</a>
+              <ul class="dropdown-menu">
+
+                <li><a class="dropdown-item category-link" href="#" data-category="Accessories > Headphones">Headphones</a></li>
+                <li><a class="dropdown-item category-link" href="#" data-category="Accessories > Chargers">Chargers</a></li>
+
+              </ul>
+            </li>
+
+          </ul>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Breadcrumb -->
+<div class="container">
+  <nav aria-label="breadcrumb" class="my-3">
+    <ol class="breadcrumb" id="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">Home</li>
+    </ol>
+  </nav>
+</div>
+
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <!-- Sidebar filters -->
+    <aside class="col-md-3 sidebar border rounded p-3 mb-4">
+      <h5>Filters</h5>
+
+      <!-- Brand Filter -->
+      <div class="mb-4">
+        <h6>Brand</h6>
+        <div class="form-check">
+          <input class="form-check-input brand-filter" type="checkbox" value="Apple" id="brandApple" checked>
+          <label class="form-check-label" for="brandApple">Apple</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input brand-filter" type="checkbox" value="Samsung" id="brandSamsung" checked>
+          <label class="form-check-label" for="brandSamsung">Samsung</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input brand-filter" type="checkbox" value="Dell" id="brandDell" checked>
+          <label class="form-check-label" for="brandDell">Dell</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input brand-filter" type="checkbox" value="Google" id="brandGoogle" checked>
+          <label class="form-check-label" for="brandGoogle">Google</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input brand-filter" type="checkbox" value="Lenovo" id="brandLenovo" checked>
+          <label class="form-check-label" for="brandLenovo">Lenovo</label>
+        </div>
+      </div>
+
+      <!-- Price Range Filter -->
+      <div class="mb-4">
+        <h6>Price Range</h6>
+        <div class="price-range">
+          <div class="form-check">
+            <input class="form-check-input price-filter" type="radio" name="priceRange" id="priceAll" value="all" checked>
+            <label class="form-check-label" for="priceAll">All</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input price-filter" type="radio" name="priceRange" id="price1" value="0-500">
+            <label class="form-check-label" for="price1">Under $500</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input price-filter" type="radio" name="priceRange" id="price2" value="501-1000">
+            <label class="form-check-label" for="price2">$501 - $1000</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input price-filter" type="radio" name="priceRange" id="price3" value="1001-2000">
+            <label class="form-check-label" for="price3">$1001 - $2000</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input price-filter" type="radio" name="priceRange" id="price4" value="2001-10000">
+            <label class="form-check-label" for="price4">Above $2000</label>
+          </div>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- Products listing -->
+    <section class="col-md-9">
+      <div class="row row-cols-1 row-cols-md-3 g-4" id="product-list">
+
+        <!-- Products will be dynamically inserted here -->
+
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- Bootstrap JS Bundle (Popper + Bootstrap JS) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  // Sample product data array
+  const products = [
+    {
+      id: 1,
+      name: 'iPhone 15 Pro',
+      category: 'Electronics > Smartphones',
+      brand: 'Apple',
+      price: 999,
+      img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-model-unselect-gallery-1-202309?wid=400&hei=400&fmt=jpeg&qlt=90&.v=1692912533981'
+    },
+    {
+      id: 2,
+      name: 'Galaxy S24 Ultra',
+      category: 'Electronics > Smartphones',
+      brand: 'Samsung',
+      price: 1199,
+      img: 'https://images.samsung.com/is/image/samsung/p6pim/in/sm-s928bzshins/gallery/in-galaxy-s24-ultra-s928-491321-sm-s928bzshins-539576675'
+    },
+    {
+      id: 3,
+      name: 'Google Pixel 8 Pro',
+      category: 'Electronics > Smartphones',
+      brand: 'Google',
+      price: 999,
+      img: 'https://store.google.com/product/images/pixel_8_pro_color_obsidian.jpg'
+    },
+    {
+      id: 4,
+      name: 'MacBook Pro 16-inch',
+      category: 'Electronics > Laptops',
+      brand: 'Apple',
+      price: 2499,
+      img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mbp16-spacegray-gallery1-202211?wid=400&hei=400&fmt=jpeg&qlt=90&.v=1665065897451'
+    },
+    {
+      id: 5,
+      name: 'Dell XPS 15',
+      category: 'Electronics > Laptops',
+      brand: 'Dell',
+      price: 1799,
+      img: 'https://i.dell.com/sites/imagecontent/products/PublishingImages/xps-15-9520-laptop/laptop-xps-15-9520-pdp-gallery-504x350.jpg'
+    },
+    {
+      id: 6,
+      name: 'Lenovo ThinkPad X1 Carbon',
+      category: 'Electronics > Laptops',
+      brand: 'Lenovo',
+      price: 1499,
+      img: 'https://www.lenovo.com/medias/lenovo-laptop-thinkpad-x1-carbon-gen-11-hero.png?context=bWFzdGVyfHJvb3R8NjExNDl8aW1hZ2UvcG5nfGhjYy9oNGYvMTA5NTgzNjg2NTU5NTIucG5nfGE0NzRhNjNmZDM4MWRkMWMyZDc3OWQzOWY2NzE2ZDY4MjRkZjgxYzZlMTI2NmRiOWJmNDM4MWU4YzA1NTAyZDQ'
+    },
+    {
+      id: 7,
+      name: 'Samsung Galaxy Book2 Pro',
+      category: 'Electronics > Laptops',
+      brand: 'Samsung',
+      price: 1299,
+      img: 'https://images.samsung.com/is/image/samsung/p6pim/in/np930xdb-kb1in/gallery/in-galaxy-book2-pro-360-np930xdb-kb1in-491189-sm-np930xdb-kb1in-thumb-533210780?$720_576_PNG$'
+    }
+  ];
+
+  // Selected category and filters state
+  let selectedCategory = null; // e.g. "Electronics > Smartphones"
+  let selectedBrands = new Set(products.map(p => p.brand)); // default all brands selected
+  let selectedPriceRange = 'all'; // price filter
+
+  // Elements
+  const productListEl = document.getElementById('product-list');
+  const breadcrumbEl = document.getElementById('breadcrumb');
+
+  // Utility: update breadcrumb
+  function updateBreadcrumb() {
+    breadcrumbEl.innerHTML = '';
+    const homeCrumb = document.createElement('li');
+    homeCrumb.className = 'breadcrumb-item';
+    const homeLink = document.createElement('a');
+    homeLink.href = '#';
+    homeLink.textContent = 'Home';
+    homeLink.addEventListener('click', e => {
+      e.preventDefault();
+      selectedCategory = null;
+      updateBreadcrumb();
+      renderProducts();
+    });
+    homeCrumb.appendChild(homeLink);
+    breadcrumbEl.appendChild(homeCrumb);
+
+    if (selectedCategory) {
+      const parts = selectedCategory.split(' > ');
+      parts.forEach((part, i) => {
+        const crumb = document.createElement('li');
+        crumb.className = i === parts.length - 1 ? 'breadcrumb-item active' : 'breadcrumb-item';
+        if (i === parts.length - 1) {
+          crumb.setAttribute('aria-current', 'page');
+          crumb.textContent = part;
+        } else {
+          const link = document.createElement('a');
+          link.href = '#';
+          link.textContent = part;
+          link.addEventListener('click', e => {
+            e.preventDefault();
+            // Update selectedCategory to the clicked breadcrumb level
+            selectedCategory = parts.slice(0, i + 1).join(' > ');
+            updateBreadcrumb();
+            renderProducts();
+          });
+          crumb.appendChild(link);
+        }
+        breadcrumbEl.appendChild(crumb);
+      });
+    } else {
+      const activeCrumb = document.createElement('li');
+      activeCrumb.className = 'breadcrumb-item active';
+      activeCrumb.setAttribute('aria-current', 'page');
+      activeCrumb.textContent = 'All Products';
+      breadcrumbEl.appendChild(activeCrumb);
+    }
+  }
+
+  // Render products based on filters and category
+  function renderProducts() {
+    productListEl.innerHTML = '';
+
+    // Filter products by category if selected
+    let filteredProducts = products.filter(p => {
+      if (selectedCategory) {
+        // Check if product category matches or starts with selected category
+        return p.category.startsWith(selectedCategory);
+      }
+      return true;
+    });
+
+    // Filter by brand
+    filteredProducts = filteredProducts.filter(p => selectedBrands.has(p.brand));
+
+    // Filter by price range
+    if (selectedPriceRange !== 'all') {
+      const [min, max] = selectedPriceRange.split('-').map(Number);
+      filteredProducts = filteredProducts.filter(p => {
+        if (max) return p.price >= min && p.price <= max;
+        return p.price >= min;
+      });
+    }
+
+    if (filteredProducts.length === 0) {
+      productListEl.innerHTML = '<p class="text-muted">No products match your filters.</p>';
+      return;
+    }
+
+    // Create cards for each filtered product
+    filteredProducts.forEach(p => {
+      const col = document.createElement('div');
+      col.className = 'col';
+
+      const card = document.createElement('div');
+      card.className = 'card h-100';
+
+      const img = document.createElement('img');
+      img.src = p.img;
+      img.alt = p.name;
+      img.className = 'card-img-top';
+      img.style.height = '200px';
+      img.style.objectFit = 'contain';
+
+      const cardBody = document.createElement('div');
+      cardBody.className = 'card-body';
+
+      const cardTitle = document.createElement('h5');
+      cardTitle.className = 'card-title';
+      cardTitle.textContent = p.name;
+
+      const cardText = document.createElement('p');
+      cardText.className = 'card-text';
+      cardText.textContent = `${p.brand} - $${p.price}`;
+
+      cardBody.appendChild(cardTitle);
+      cardBody.appendChild(cardText);
+
+      card.appendChild(img);
+      card.appendChild(cardBody);
+
+      col.appendChild(card);
+      productListEl.appendChild(col);
+    });
+  }
+
+  // Handle category clicks in navbar
+  document.querySelectorAll('.category-link').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      selectedCategory = e.target.getAttribute('data-category');
+      updateBreadcrumb();
+      renderProducts();
+    });
+  });
+
+  // Handle brand filter changes
+  document.querySelectorAll('.brand-filter').forEach(chk => {
+    chk.addEventListener('change', e => {
+      const brand = e.target.value;
+      if (e.target.checked) {
+        selectedBrands.add(brand);
+      } else {
+        selectedBrands.delete(brand);
+      }
+      renderProducts();
+    });
+  });
+
+  // Handle price range filter changes
+  document.querySelectorAll('.price-filter').forEach(radio => {
+    radio.addEventListener('change', e => {
+      selectedPriceRange = e.target.value;
+      renderProducts();
+    });
+  });
+
+  // Initial load: select all brands, all price, no category
+  updateBreadcrumb();
+  renderProducts();
+
+  // Dropdown submenu support for Bootstrap 5
+  document.querySelectorAll('.dropdown-submenu > a').forEach(function(element){
+    element.addEventListener('mouseenter', function(e){
+      const submenu = this.nextElementSibling;
+      if(submenu){
+        bootstrap.Dropdown.getOrCreateInstance(submenu).show();
+      }
+    });
+    element.addEventListener('click', function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      const submenu = this.nextElementSibling;
+      if(submenu){
+        if(submenu.classList.contains('show')){
+          bootstrap.Dropdown.getOrCreateInstance(submenu).hide();
+        } else {
+          bootstrap.Dropdown.getOrCreateInstance(submenu).show();
+        }
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
